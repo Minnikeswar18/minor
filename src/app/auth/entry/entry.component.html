@@ -1,0 +1,94 @@
+<div class="entry-page">
+    <app-loader [showLoader] ="isLoading"></app-loader>
+    <div class="entry-content">
+        <div class="container">
+            <input type="checkbox" id="flip" />
+            <div class="cover">
+                <div class="front">
+                    <img class="backImg" *ngIf="isLoginActive ; else signUpCover" [src]="imgUrl1" alt="">
+                    <ng-template #signUpCover>
+                        <img class="backImg" [src]="imgUrl2" alt="">
+                    </ng-template>
+                </div>
+            </div>
+            <div class="forms">
+                <div class="form-content">
+                    <div class="login-form" >
+                        <div class="title page-heading">Login</div>
+                        <form [formGroup] = "loginForm" (ngSubmit)="login()">
+                            <div class="input-boxes">
+                                <div class="input-box" [class.err-comp] = "loginForm.get('email')?.touched && loginForm.get('email')?.errors">
+                                    <i class="fas fa-envelope"></i>
+                                    <input  type="email" formControlName='email' placeholder="Enter your email" >
+                                </div>
+                                <small *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="err-msg">Invalid Email</small>
+                                <div class="input-box" [class.err-comp] = "loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+                                    <i class="fas fa-lock"></i>
+                                    <input
+                                    formControlName='password'
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    />
+                                </div>
+                                <small *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="err-msg">Password is required</small>
+                                <div class="text mt-3">
+                                    <a class="forgot-password-link" href="/forgotPassword">Forgot password?</a>
+                                </div>
+                                <div class="button input-box" >
+                                    <input type="submit" value="Login" [disabled]="loginForm.invalid" />
+                                </div>
+                                <div class="text sign-up-text">
+                                    Don't have an account? <label class="ms-1" for="flip" (click)="toggleLogin()">Sigup now</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-form">
+                        <div class="title page-heading">Signup</div>
+                        <form [formGroup] = "signupForm" (ngSubmit)="signUp()">
+                            <div class="input-boxes">
+                                <div class="input-box" [class.err-comp] = "signupForm.get('username')?.touched && signupForm.get('username')?.errors">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" formControlName='username' placeholder="Enter Username" required />
+                                </div>
+                                <small *ngIf="signupForm.get('username')?.errors && signupForm.get('username')?.touched" class="err-msg">Username is required</small>
+                                <div class="input-box" [class.err-comp] = "signupForm.get('email')?.touched && signupForm.get('email')?.errors">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" formControlName='email' placeholder="Enter your email" required />
+                                </div>
+                                <small *ngIf="signupForm.get('email')?.errors && signupForm.get('email')?.touched" class="err-msg">Invalid Email</small>
+                                <div class="input-box" [class.err-comp] = "signupForm.get('password')?.touched && signupForm.get('password')?.errors">
+                                    <i class="fas fa-lock"></i>
+                                    <input
+                                        formControlName='password'
+                                        type="password"
+                                        placeholder="Enter your password"
+                                        required
+                                    />
+                                </div>
+                                <small *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched" class="err-msg">Password is required</small>
+                                <div class="input-box" [class.err-comp] = "signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.errors">
+                                    <i class="fas fa-lock"></i>
+                                    <input
+                                        formControlName='confirmPassword'
+                                        type="password"
+                                        placeholder="Confirm your password"
+                                        required
+                                    />
+                                </div>
+                                <small *ngIf="signupForm.get('confirmPassword')?.errors && signupForm.get('confirmPassword')?.touched" class="err-msg">Confirm Password is required</small>
+                                <div class="button input-box">
+                                    <input type="submit" value="Sign up" [disabled]="signupForm.invalid" />
+                                </div>
+                                <div class="text sign-up-text">
+                                    Already have an account?
+                                    <label for="flip" class="ms-1" (click)="toggleLogin()">Login now</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

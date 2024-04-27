@@ -1,0 +1,71 @@
+<div class="modal modal-lg" [style.display]="showModal ? 'block' : 'none'" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Job Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeJobModal()"  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-floating mb-3">
+                <input type="hidden" name="company" />
+                <input type="text" class="form-control" [value]="selectedJob.companyName" readOnly />
+                <label for="company-name">Company Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" [value]="selectedJob.jobTitle" readOnly />
+                <label for="job-role">Job Role</label>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text grey-bg" for="inputGroupSelect01">Work Mode</label>
+                <input class="form-select" id="inputGroupSelect01" [value]="selectedJob.jobMode" readOnly>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text grey-bg" for="inputGroupSelect01">Work Type</label>
+                <input class="form-select" id="inputGroupSelect01" [value]="selectedJob.jobType" readOnly>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text grey-bg" for="inputGroupSelect01">Job Scope</label>
+                <input class="form-select" id="inputGroupSelect01" [value]="selectedJob.jobScope" readOnly>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text grey-bg" for="inputGroupSelect01">Required Experience</label>
+                <input class="form-select" id="inputGroupSelect01" [value]="selectedJob.jobExperience" readOnly>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text grey-bg" for="inputGroupSelect01">Salary type</label>
+                <input class="form-select" id="inputGroupSelect01" [value]="selectedJob.salaryType" readOnly>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" [value]="selectedJob.jobSalary" readOnly />
+                <label for="salary">Salary (INR)</label>
+            </div>
+            <div class="skills-div mb-3">
+                <label class="skills-label ps-3 fw-light">Job Description</label>
+                <div class="d-flex flex-row ms-3 mb-2 flex-wrap" style="white-space: pre-line;" >
+                    {{selectedJob.jobDescription}}
+                </div>
+            </div>
+            <div class="skills-div">
+                <label class="skills-label ps-3 fw-light">Skills required</label>
+                <div class="d-flex flex-row ms-3 py-2 flex-wrap" *ngIf="selectedJob.jobSkills?.length > 0 ; else noSkills">
+                   <ng-container  *ngFor="let skill of selectedJob.jobSkills">
+                        <app-tag [content]="skill"></app-tag>
+                   </ng-container>
+                </div>
+            </div>
+            <ng-template #noSkills>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" value="Not Mentioned" readOnly />
+                    <label for="salary">Skills Required</label>
+                </div>
+            </ng-template>
+            <div class="d-flex flex-row justify-content-end mt-3">
+                <button type="button" class="btn btn-secondary me-3" (click)="closeJobModal()"  data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">View Applications</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+<div class='profile-list'>
+    <div class='profile-card'>
+        <div class='first-row ps-2'>
+            <img src="../../../assets/images/profile-pic.png" alt='profile-pic' class='profile-pic' />
+            <div class='title-div mb-0'>
+                <h3 class='name'>{{(profile.firstName || profile.lastName) ? ((profile.firstName ? profile.firstName : "") + " " + (profile.lastName ? profile.lastName : "")) : (profile.username)}}</h3>
+                <p class='user-name'>{{ '@'+ profile.username}}</p>
+                <p class='user-title'>{{profile.userBio}}</p>
+            </div>
+        </div>
+        <div class='second-row'>
+            <ng-container *ngFor="let skill of profile.userSkills ; let i = index">
+                <app-tag *ngIf="i < 5" [content]="skill" >
+                </app-tag>
+            </ng-container>
+        </div>
+        <div class='third-row'>
+            <p class='description ps-2'>{{profile.userAbout}}</p>
+        </div>
+    </div>
+    <div class='buttons-div'>
+        <button class='btn btn-primary mb-3'><a class='profile-link' to = "#">View Profile</a></button>
+        <button class='btn btn-success' >Invite to Job</button>
+    </div>
+</div>

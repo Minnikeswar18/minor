@@ -1,0 +1,11 @@
+.home-button , .people-button , .jobs-button{
+    color: azure !important;
+    font-size: larger !important;
+}
+
+.navbar{
+    width: 100%;
+    position: sticky !important;
+    z-index: 1000;
+    top: 0;
+}

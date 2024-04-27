@@ -1,0 +1,14 @@
+<div class='element'>
+    <div class="main-div">
+        <h1 class="main-top">{{job.jobTitle}}</h1>
+        <div class="main-bottom">
+            <h5 class='job-id'> <b>Date : </b> {{job.datePosted | dateFormat}} </h5> <!-- pipe -->
+            <h5 class='work-type'> <b>Work Type : </b> {{job.jobType}} </h5>
+            <h5 class='work-mode'> <b>Work Mode : </b> {{job.jobMode}} </h5>
+        </div>
+    </div>
+    <div class='buttons'>
+        <ng-content select = ".view"></ng-content>
+        <ng-content select = ".aux"></ng-content>
+    </div>
+</div>

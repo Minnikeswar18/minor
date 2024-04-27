@@ -1,0 +1,89 @@
+<div class="modal modal-lg" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Job</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="handleClose()"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addJobForm" (ngSubmit)="handleSubmit()">
+                    <div class="form-floating mb-3">
+                        <input type="hidden" name="company" />
+                        <input type="text" class="form-control"
+                            [ngClass]="{ 'is-invalid' : addJobForm.get('companyName')?.touched && addJobForm.get('companyName')?.invalid}"
+                            formControlName="companyName" placeholder="Company Name" required />
+                        <label htmlFor="company-name">Company Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                            [ngClass]="{ 'is-invalid' : addJobForm.get('jobTitle')?.touched && addJobForm.get('jobTitle')?.invalid}"
+                            formControlName="jobTitle" placeholder="Job Role" required />
+                        <label htmlFor="job-role">Job Role</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text grey-bg" for="inputGroupSelect01">Work Mode</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName='jobMode'>
+                            <option value="Work from Office">Work from Office</option>
+                            <option value="Work from Home">Work from Home</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text grey-bg" for="inputGroupSelect01">Work Type</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName='jobType'>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Performance based FTE">Performance based FTE</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text grey-bg" for="inputGroupSelect01">Job Scope</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName='jobScope'>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text grey-bg" for="inputGroupSelect01">Required Experience</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName='jobExperience'>
+                            <option value="Fresher (0-2 years)">Fresher (0-2 years)</option>
+                            <option value="Intermediate (2-5 years)">Intermediate (2-5 years)</option>
+                            <option value="Expert (5+ years)">Expert (5+ years)</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text grey-bg" for="inputGroupSelect01">Salary type</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName='salaryType'>
+                            <option value="Hourly rate (/hr)">Hourly rate (/hr)</option>
+                            <option value="Fixed price">Fixed price</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                            [ngClass]="{ 'is-invalid' : addJobForm.get('jobSalary')?.touched && addJobForm.get('jobSalary')?.invalid}"
+                            formControlName="jobSalary" placeholder="Salary (INR)" required />
+                        <label htmlFor="salary">Salary (INR)</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control jd" formControlName="jobDescription" placeholder="Job Description"
+                            id="floatingTextarea2"
+                            [ngClass]="{ 'is-invalid' : addJobForm.get('jobDescription')?.touched && addJobForm.get('jobDescription')?.invalid}"
+                            [ngStyle]="{'height' : '150px'}"></textarea>
+                        <label htmlFor="floatingTextarea2">Job Description</label>
+                    </div>
+                    <p-chips formControlName="jobSkills" placeholder="Skills Required"></p-chips>
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="button" class="btn btn-secondary me-3" (click)="handleClose()">
+                            Close
+                        </button>
+                        <button [disabled]="addJobForm.invalid" class="btn btn-primary me-3" type='submit'>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

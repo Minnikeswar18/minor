@@ -1,0 +1,19 @@
+<div class='home-page'>
+    <h1 class='page-heading'>Top Matching Profiles for your Jobs</h1>
+    <div class='home-page-header'>
+        <form [formGroup]="jobSelectionForm">
+            <select class="form-select custom-select form-select-lg mb-3" formControlName="selectedJob" aria-label="Large select example">
+                <option disabled value="not-selected" >Select a job to view matching profiles</option>
+                <ng-container>
+                    <option *ngFor="let job of jobs" [value]="job.id">{{job.jobTitle + " at " + job.companyName}}</option>
+                </ng-container>
+              </select>
+        </form>
+    </div>
+    <div class='home-page-content'>
+        <ng-container *ngFor="let profile of matchingProfiles">
+            <app-profile-list [profile]="profile">
+            </app-profile-list>
+        </ng-container>
+    </div>
+</div>

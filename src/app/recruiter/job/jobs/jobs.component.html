@@ -1,0 +1,40 @@
+<div class='home-page'>
+    <div class="floating-icon" (click)="handleShowAddJobModal()">
+      <h1 class='page-heading'>+</h1>
+    </div>
+      <div class="d-flex align-items-center flex-column">
+        <h1 class='page-heading'>Jobs Posted by You</h1>
+      <div class='home-page-header'>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <ng-container *ngFor="let type of sortTypes; let ind = index">
+              <li><a class="dropdown-item" (click)="setSortType(type)" [class.active] = "selectedSort === type" >{{type}}</a></li>
+            </ng-container>
+          </ul>
+        </div>
+        <form class="d-flex" role="search">
+          <input
+            id='search-bar'
+            class="form-control"
+            type="search"
+            name = "search"
+            placeholder="Search by Job title"
+            aria-label="Search"
+            [(ngModel)] = "searchText"
+            (ngModelChange) = "filterJobs()"
+          />
+        </form>
+      </div>
+      </div>
+      <div class='home-page-content'>
+          <app-job-card *ngFor="let job of jobs" [job]="job">
+              <button class='btn btn-primary view' (click)="viewJob(job)">View</button>
+              <button class='btn btn-danger aux' (click)="deleteJob(job)">Delete</button>
+          </app-job-card>
+      </div>
+      <app-job-modal [showModal]="showModal" [selectedJob]="selectedJob" (closeModal)="closeJobModal()"></app-job-modal>
+      <app-form-modal [showModal]="showAddJobModal" (addJob)="handleAddJob($event)" (closeModal)="handleCloseAddJobModal()"></app-form-modal>
+    </div>
